@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Quadrow</string>
+    <string name="splash_screen">Quadrow.\nClick Me!</string>
+    <string name="dummy_button">Dummy Button</string>
+	<string name="new_game">New Game</string>
+	<string name="login">Login</string>
+	<string name="name">Enter your full name:</string>
+	<string name="email">Enter your email:</string>
+	<string name="username">Create a username:</string>
+	<string name="password">Create a password:</string>
+	<string name="confirm_password">Confirm password:</string>
+	<string name="submit">Submit</string>
+    
+</resources>
