@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class FullscreenActivity extends Activity {
     
@@ -18,7 +20,7 @@ public class FullscreenActivity extends Activity {
     private static final boolean TOGGLE_ON_CLICK = true;
     private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
     private SystemUiHider mSystemUiHider;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +72,25 @@ public class FullscreenActivity extends Activity {
         });
         
         findViewById(R.id.new_game).setOnTouchListener(mDelayHideTouchListener);
-        main();
+        final Button newGameButton = (Button) findViewById(R.id.new_game);
+    	final Button loginButton = (Button) findViewById(R.id.login);
+    	
+    	newGameButton.setOnClickListener(
+    			new View.OnClickListener()
+    	        {
+    	            public void onClick(View view){
+    	            	setContentView(R.layout.game_board);
+    	            	newGame();
+    	            }
+    	        });
+    	loginButton.setOnClickListener(
+    			new View.OnClickListener()
+    	        {
+    	            public void onClick(View view){
+    	            	setContentView(R.layout.login);
+    	            	login();
+    	            }
+    	        });
     }
 
     @Override
@@ -103,34 +123,9 @@ public class FullscreenActivity extends Activity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
     
-    public void main(){
-    	final Button newGameButton = (Button) findViewById(R.id.new_game);
-    	final Button loginButton = (Button) findViewById(R.id.login);
-    	//final login login = new login();
-    	
-    	newGameButton.setOnClickListener(
-    			new View.OnClickListener()
-    	        {
-    	            public void onClick(View view){
-    	            	setContentView(R.layout.game_board);
-    	            	delayedHide(0);
-    	            	mSystemUiHider.hide();
-    	            	newGame();
-    	            }
-    	        });
-    	loginButton.setOnClickListener(
-    			new View.OnClickListener()
-    	        {
-    	            public void onClick(View view){
-    	            	setContentView(R.layout.login);
-    	            	delayedHide(0);
-    	            	mSystemUiHider.hide();
-    	            	login();
-    	            }
-    	        });
-    }
     public void login(){
     	final Button submitButton = (Button) findViewById(R.id.submit);
+    	final Button backButton = (Button) findViewById(R.id.backButton);
     	final EditText fullNameText = (EditText) findViewById(R.id.name);
     	final EditText emailText = (EditText) findViewById(R.id.email);
     	final EditText usernameText = (EditText) findViewById(R.id.username);
@@ -149,8 +144,42 @@ public class FullscreenActivity extends Activity {
     	            	login.main(fullName, username, email, password, confirmPassword);
     	            }
     	        });
+    	backButton.setOnClickListener(
+    			new View.OnClickListener()
+    	        {
+    	            public void onClick(View view){
+    	            	setContentView(R.layout.activity_fullscreen);
+    	            	onCreate(null);
+    	            }
+    	        });
     }
     public void newGame(){
-    	
+    	final Button backButton = (Button) findViewById(R.id.backButton);
+    	final Button playButton = (Button) findViewById(R.id.playButton);
+    	final ImageView img = (ImageView) findViewById(R.id.img);
+        
+        img.setImageResource(R.raw.red);
+        
+        playButton.setOnClickListener(
+    			new View.OnClickListener()
+    	        {
+    	            public void onClick(View view){
+    	            	TranslateAnimation translate = new TranslateAnimation(-200, 0, 0, 0);
+    	                translate.setDuration(1000);
+    	                translate.reset();  
+    	                translate.setFillAfter(true);
+    	                img.clearAnimation();
+    	                img.startAnimation(translate);
+    	            }
+    	        });
+        
+        backButton.setOnClickListener(
+    			new View.OnClickListener()
+    	        {
+    	            public void onClick(View view){
+    	            	setContentView(R.layout.activity_fullscreen);
+    	            	onCreate(null);
+    	            }
+    	        });
     }
 }

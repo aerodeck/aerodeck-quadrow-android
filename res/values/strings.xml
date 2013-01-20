@@ -12,5 +12,8 @@
 	<string name="password">Create a password:</string>
 	<string name="confirm_password">Confirm password:</string>
 	<string name="submit">Submit</string>
+	<string name="back">Back</string>
+	<string name="play">Play</string>
+	<string name="circle">Circle</string>
     
 </resources>

@@ -2,11 +2,8 @@ package io.aerodeck.quadrow;
 
 import java.util.Arrays;
 import java.util.Vector;
-
 import org.json.JSONArray;
-
 import android.app.Activity;
-import android.util.Log;
 
 public class login extends Activity{
 	
