@@ -3,26 +3,20 @@ package io.aerodeck.quadrow;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 
-class MyGestureDetector extends SimpleOnGestureListener {
-    
+
+class gestureDetector extends SimpleOnGestureListener {
+   
 	private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-	@Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        try {
-            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
-                return false;
-            // right to left swipe
-            if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                
-            }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                
-            }
-        } catch (Exception e) {
-            // nothing
+	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+	FullscreenActivity main = new FullscreenActivity();
+	
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX) {
+        if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+            return false; // Right to left
+        }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+            //main.animate();
+        	return false; // Left to right
         }
         return false;
     }
-
 }

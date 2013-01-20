@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
@@ -153,12 +154,21 @@ public class FullscreenActivity extends Activity {
     	            }
     	        });
     }
-    public void newGame(){
+    
+	@SuppressWarnings("deprecation")
+	public void newGame(){
     	final Button backButton = (Button) findViewById(R.id.backButton);
     	final Button playButton = (Button) findViewById(R.id.playButton);
     	final ImageView img = (ImageView) findViewById(R.id.img);
-        
+    	
         img.setImageResource(R.raw.red);
+        
+        //Deprecated methods used to support prior versions of Android.
+        Display display = getWindowManager().getDefaultDisplay(); 
+        final int width = display.getWidth();
+        final int height = display.getHeight();
+        final float center = width/2;
+		final float distance = width/5;
         
         playButton.setOnClickListener(
     			new View.OnClickListener()
@@ -181,5 +191,38 @@ public class FullscreenActivity extends Activity {
     	            	onCreate(null);
     	            }
     	        });
+        
+        img.setOnTouchListener(new View.OnTouchListener() {
+        	@Override
+        	public boolean onTouch(View v, MotionEvent event) {
+        		switch(event.getAction()){
+        		case MotionEvent.ACTION_DOWN:   
+        			break;
+        		case MotionEvent.ACTION_MOVE:
+        			/*int x_cord = (int)event.getRawX();
+        			int y_cord = (int)event.getRawY();
+
+        			if(x_cord>windowwidth){x_cord=windowwidth;}
+        			if(y_cord>windowheight){y_cord=windowheight;}
+
+        			layoutParams.leftMargin = x_cord -25;
+        			layoutParams.topMargin = y_cord - 75;
+
+        			img.setLayoutParams(layoutParams);
+        			break;*/
+        			
+        			TranslateAnimation translate = new TranslateAnimation(0, distance, 0, 0);
+	                translate.setDuration(1000);
+	                translate.reset();  
+	                translate.setFillAfter(true);
+	                img.clearAnimation();
+	                img.startAnimation(translate);
+	                break;
+        		default:
+        			break;
+        		}
+        		return true;
+        	}
+        });
     }
 }
