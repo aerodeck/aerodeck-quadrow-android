@@ -32,24 +32,25 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int backButton=0x7f090006;
-        public static final int confirm_password=0x7f090010;
-        public static final int confirm_password_label=0x7f09000f;
-        public static final int email=0x7f09000a;
-        public static final int email_label=0x7f090009;
+        public static final int backButton=0x7f090007;
+        public static final int confirm_password=0x7f090011;
+        public static final int confirm_password_label=0x7f090010;
+        public static final int email=0x7f09000b;
+        public static final int email_label=0x7f09000a;
         public static final int fullscreen_content=0x7f090000;
         public static final int fullscreen_content_controls=0x7f090001;
-        public static final int img=0x7f090005;
+        public static final int img=0x7f090004;
+        public static final int leftButton=0x7f090005;
         public static final int login=0x7f090003;
-        public static final int name=0x7f090008;
-        public static final int name_label=0x7f090007;
+        public static final int name=0x7f090009;
+        public static final int name_label=0x7f090008;
         public static final int new_game=0x7f090002;
-        public static final int password=0x7f09000e;
-        public static final int password_label=0x7f09000d;
-        public static final int playButton=0x7f090004;
-        public static final int submit=0x7f090011;
-        public static final int username=0x7f09000c;
-        public static final int username_label=0x7f09000b;
+        public static final int password=0x7f09000f;
+        public static final int password_label=0x7f09000e;
+        public static final int rightButton=0x7f090006;
+        public static final int submit=0x7f090012;
+        public static final int username=0x7f09000d;
+        public static final int username_label=0x7f09000c;
     }
     public static final class layout {
         public static final int activity_fullscreen=0x7f030000;
@@ -66,11 +67,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int confirm_password=0x7f070009;
         public static final int dummy_button=0x7f070002;
         public static final int email=0x7f070006;
+        public static final int left=0x7f07000e;
         public static final int login=0x7f070004;
         public static final int name=0x7f070005;
         public static final int new_game=0x7f070003;
         public static final int password=0x7f070008;
         public static final int play=0x7f07000c;
+        public static final int right=0x7f07000f;
         public static final int splash_screen=0x7f070001;
         public static final int submit=0x7f07000a;
         public static final int username=0x7f070007;

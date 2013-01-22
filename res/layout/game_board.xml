@@ -5,25 +5,6 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/playButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:layout_toLeftOf="@+id/img"
-        android:gravity="center_horizontal|center"
-        android:text="@string/play" />
-
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/playButton"
-        android:layout_alignBottom="@+id/playButton"
-        android:layout_toRightOf="@+id/img"
-        android:text="@string/back" />
-
     <ImageView
         android:id="@+id/img"
         android:layout_width="50dp"
@@ -33,5 +14,34 @@
         android:layout_marginTop="81dp"
         android:contentDescription="@string/circle"
         android:src="@drawable/circle" />
+
+    <Button
+        android:id="@+id/leftButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="112dp"
+        android:layout_toLeftOf="@+id/img"
+        android:gravity="center_horizontal|center"
+        android:text="@string/left" />
+
+    <Button
+        android:id="@+id/rightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/leftButton"
+        android:layout_alignBottom="@+id/leftButton"
+        android:layout_toRightOf="@+id/img"
+        android:gravity="center_horizontal|center"
+        android:text="@string/right" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="@string/back" />
 
 </RelativeLayout>

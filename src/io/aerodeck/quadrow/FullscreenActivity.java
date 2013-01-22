@@ -21,6 +21,7 @@ public class FullscreenActivity extends Activity {
     private static final boolean TOGGLE_ON_CLICK = true;
     private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
     private SystemUiHider mSystemUiHider;
+    int i = 1;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +159,8 @@ public class FullscreenActivity extends Activity {
 	@SuppressWarnings("deprecation")
 	public void newGame(){
     	final Button backButton = (Button) findViewById(R.id.backButton);
-    	final Button playButton = (Button) findViewById(R.id.playButton);
+    	final Button rightButton = (Button) findViewById(R.id.rightButton);
+    	final Button leftButton = (Button) findViewById(R.id.leftButton);
     	final ImageView img = (ImageView) findViewById(R.id.img);
     	
         img.setImageResource(R.raw.red);
@@ -169,17 +171,36 @@ public class FullscreenActivity extends Activity {
         final int height = display.getHeight();
         final float center = width/2;
 		final float distance = width/5;
-        
-        playButton.setOnClickListener(
+		i = 0;
+		
+        rightButton.setOnClickListener(
     			new View.OnClickListener()
     	        {
     	            public void onClick(View view){
-    	            	TranslateAnimation translate = new TranslateAnimation(-200, 0, 0, 0);
-    	                translate.setDuration(1000);
-    	                translate.reset();  
-    	                translate.setFillAfter(true);
-    	                img.clearAnimation();
-    	                img.startAnimation(translate);
+    	            	if(i <= 1){
+    	            		i++;
+    	            		TranslateAnimation translate = new TranslateAnimation(distance*(i-1), distance*i, 0, 0);
+        	                translate.setDuration(1000);
+        	                translate.reset();  
+        	                translate.setFillAfter(true);
+        	                img.clearAnimation();
+        	                img.startAnimation(translate);
+    	            	}
+    	            }
+    	        });
+        leftButton.setOnClickListener(
+    			new View.OnClickListener()
+    	        {
+    	            public void onClick(View view){
+    	            	if(i >= -1){
+    	            		i--;
+    	            		TranslateAnimation translate = new TranslateAnimation(distance*(i+1), distance*i, 0, 0);
+        	                translate.setDuration(1000);
+        	                translate.reset();  
+        	                translate.setFillAfter(true);
+        	                img.clearAnimation();
+        	                img.startAnimation(translate);
+    	            	}
     	            }
     	        });
         
@@ -210,8 +231,8 @@ public class FullscreenActivity extends Activity {
 
         			img.setLayoutParams(layoutParams);
         			break;*/
-        			
-        			TranslateAnimation translate = new TranslateAnimation(0, distance, 0, 0);
+        			i++;
+        			TranslateAnimation translate = new TranslateAnimation(distance*i, distance*i, 0, 0);
 	                translate.setDuration(1000);
 	                translate.reset();  
 	                translate.setFillAfter(true);
