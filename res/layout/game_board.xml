@@ -7,33 +7,13 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="50dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="81dp"
         android:contentDescription="@string/circle"
         android:src="@drawable/circle" />
-
-    <Button
-        android:id="@+id/leftButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="112dp"
-        android:layout_toLeftOf="@+id/img"
-        android:gravity="center_horizontal|center"
-        android:text="@string/left" />
-
-    <Button
-        android:id="@+id/rightButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/leftButton"
-        android:layout_alignBottom="@+id/leftButton"
-        android:layout_toRightOf="@+id/img"
-        android:gravity="center_horizontal|center"
-        android:text="@string/right" />
 
     <Button
         android:id="@+id/backButton"
@@ -43,5 +23,25 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
         android:text="@string/back" />
+
+    <Button
+        android:id="@+id/rightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/leftButton"
+        android:layout_alignBottom="@+id/leftButton"
+        android:layout_toRightOf="@+id/backButton"
+        android:gravity="center_horizontal|center"
+        android:text="@string/right" />
+
+    <Button
+        android:id="@+id/leftButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/backButton"
+        android:layout_marginBottom="32dp"
+        android:layout_toLeftOf="@+id/backButton"
+        android:gravity="center_horizontal|center"
+        android:text="@string/left" />
 
 </RelativeLayout>

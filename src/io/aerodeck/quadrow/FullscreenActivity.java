@@ -21,6 +21,8 @@ public class FullscreenActivity extends Activity {
     private static final boolean TOGGLE_ON_CLICK = true;
     private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
     private SystemUiHider mSystemUiHider;
+    float[] directionx = {0,0};
+	float[] directiony = {0,0};
     int i = 1;
     
     @Override
@@ -220,24 +222,40 @@ public class FullscreenActivity extends Activity {
         		case MotionEvent.ACTION_DOWN:   
         			break;
         		case MotionEvent.ACTION_MOVE:
-        			/*int x_cord = (int)event.getRawX();
-        			int y_cord = (int)event.getRawY();
-
-        			if(x_cord>windowwidth){x_cord=windowwidth;}
-        			if(y_cord>windowheight){y_cord=windowheight;}
-
-        			layoutParams.leftMargin = x_cord -25;
-        			layoutParams.topMargin = y_cord - 75;
-
-        			img.setLayoutParams(layoutParams);
-        			break;*/
-        			i++;
-        			TranslateAnimation translate = new TranslateAnimation(distance*i, distance*i, 0, 0);
-	                translate.setDuration(1000);
-	                translate.reset();  
-	                translate.setFillAfter(true);
-	                img.clearAnimation();
-	                img.startAnimation(translate);
+        			
+        			float x = event.getRawX();
+        			float y = event.getRawY();
+        			
+        			directionx[0] = directionx[1];
+        	    	directionx[1] = x;
+        	    	float direcx = directionx[1] - directionx[0];
+        	    	
+        	    	directiony[0] = directiony[1];
+        	    	directiony[1] = y;
+        	    	float direcy = directiony[0] - directiony[1];
+        	    	
+        	    	if (direcx > 0){
+        	    		if(i <= 1){
+    	            		i++;
+    	            		TranslateAnimation translate = new TranslateAnimation(distance*(i-1), distance*i, 0, 0);
+        	                translate.setDuration(1000);
+        	                translate.reset();  
+        	                translate.setFillAfter(true);
+        	                img.clearAnimation();
+        	                img.startAnimation(translate);
+    	            	}
+        	    	}
+        	    	else if (direcx < 0){
+        	    		if(i >= -1){
+    	            		i--;
+    	            		TranslateAnimation translate = new TranslateAnimation(distance*(i+1), distance*i, 0, 0);
+        	                translate.setDuration(1000);
+        	                translate.reset();  
+        	                translate.setFillAfter(true);
+        	                img.clearAnimation();
+        	                img.startAnimation(translate);
+    	            	}
+        	    	}
 	                break;
         		default:
         			break;
