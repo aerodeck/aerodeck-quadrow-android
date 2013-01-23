@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+@SuppressWarnings("deprecation")
 public class FullscreenActivity extends Activity {
     
     private static final boolean AUTO_HIDE = true;
@@ -23,7 +24,7 @@ public class FullscreenActivity extends Activity {
     private SystemUiHider mSystemUiHider;
     float[] directionx = {0,0};
 	float[] directiony = {0,0};
-    int i = 1;
+    static int i = 1;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,53 +159,23 @@ public class FullscreenActivity extends Activity {
     	        });
     }
     
-	@SuppressWarnings("deprecation")
 	public void newGame(){
     	final Button backButton = (Button) findViewById(R.id.backButton);
     	final Button rightButton = (Button) findViewById(R.id.rightButton);
     	final Button leftButton = (Button) findViewById(R.id.leftButton);
-    	final ImageView img = (ImageView) findViewById(R.id.img);
+    	final ImageView chip = (ImageView) findViewById(R.id.chip);
+    	final ImageView board = (ImageView) findViewById(R.id.board);
     	
-        img.setImageResource(R.raw.red);
+        chip.setImageResource(R.raw.red);
+        board.setImageResource(R.raw.quadrow_board);
         
         //Deprecated methods used to support prior versions of Android.
         Display display = getWindowManager().getDefaultDisplay(); 
         final int width = display.getWidth();
         final int height = display.getHeight();
-        final float center = width/2;
-		final float distance = width/5;
+        //final float center = width/2;
+		final float distance = width/7;
 		i = 0;
-		
-        rightButton.setOnClickListener(
-    			new View.OnClickListener()
-    	        {
-    	            public void onClick(View view){
-    	            	if(i <= 1){
-    	            		i++;
-    	            		TranslateAnimation translate = new TranslateAnimation(distance*(i-1), distance*i, 0, 0);
-        	                translate.setDuration(1000);
-        	                translate.reset();  
-        	                translate.setFillAfter(true);
-        	                img.clearAnimation();
-        	                img.startAnimation(translate);
-    	            	}
-    	            }
-    	        });
-        leftButton.setOnClickListener(
-    			new View.OnClickListener()
-    	        {
-    	            public void onClick(View view){
-    	            	if(i >= -1){
-    	            		i--;
-    	            		TranslateAnimation translate = new TranslateAnimation(distance*(i+1), distance*i, 0, 0);
-        	                translate.setDuration(1000);
-        	                translate.reset();  
-        	                translate.setFillAfter(true);
-        	                img.clearAnimation();
-        	                img.startAnimation(translate);
-    	            	}
-    	            }
-    	        });
         
         backButton.setOnClickListener(
     			new View.OnClickListener()
@@ -215,13 +186,43 @@ public class FullscreenActivity extends Activity {
     	            }
     	        });
         
-        img.setOnTouchListener(new View.OnTouchListener() {
+        rightButton.setOnClickListener(
+			new View.OnClickListener()
+        	{
+            	public void onClick(View view){
+            		if(i <= 2){
+            			i++;
+            			TranslateAnimation translate = new TranslateAnimation(distance*(i-1), distance*i, 0, 0);
+	                	translate.setDuration(1000);
+	                	translate.reset();  
+	                	translate.setFillAfter(true);
+	                	chip.clearAnimation();
+	                	chip.startAnimation(translate);
+            		}
+            	}
+        	});
+		leftButton.setOnClickListener(
+			new View.OnClickListener()
+        	{
+            	public void onClick(View view){
+            		if(i >= -2 ){
+            			i--;
+            			TranslateAnimation translate = new TranslateAnimation(distance*(i+1), distance*i, 0, 0);
+	                	translate.setDuration(1000);
+	                	translate.reset();  
+	                	translate.setFillAfter(true);
+	                	chip.clearAnimation();
+	                	chip.startAnimation(translate);
+            		}
+            	}
+        	});
+		chip.setOnTouchListener(new View.OnTouchListener() {
         	@Override
         	public boolean onTouch(View v, MotionEvent event) {
         		switch(event.getAction()){
         		case MotionEvent.ACTION_DOWN:   
         			break;
-        		case MotionEvent.ACTION_MOVE:
+        		case MotionEvent.ACTION_UP:
         			
         			float x = event.getRawX();
         			float y = event.getRawY();
@@ -235,26 +236,34 @@ public class FullscreenActivity extends Activity {
         	    	float direcy = directiony[0] - directiony[1];
         	    	
         	    	if (direcx > 0){
-        	    		if(i <= 1){
-    	            		i++;
-    	            		TranslateAnimation translate = new TranslateAnimation(distance*(i-1), distance*i, 0, 0);
-        	                translate.setDuration(1000);
-        	                translate.reset();  
-        	                translate.setFillAfter(true);
-        	                img.clearAnimation();
-        	                img.startAnimation(translate);
-    	            	}
+        	    		if(i <= 2){
+                			i++;
+                			TranslateAnimation translate = new TranslateAnimation(distance*(i-1), distance*i, 0, 0);
+    	                	translate.setDuration(1000);
+    	                	translate.reset();  
+    	                	translate.setFillAfter(true);
+    	                	chip.clearAnimation();
+    	                	chip.startAnimation(translate);
+                		}
         	    	}
         	    	else if (direcx < 0){
-        	    		if(i >= -1){
-    	            		i--;
-    	            		TranslateAnimation translate = new TranslateAnimation(distance*(i+1), distance*i, 0, 0);
-        	                translate.setDuration(1000);
-        	                translate.reset();  
-        	                translate.setFillAfter(true);
-        	                img.clearAnimation();
-        	                img.startAnimation(translate);
-    	            	}
+        	    		if(i >= -2 ){
+                			i--;
+                			TranslateAnimation translate = new TranslateAnimation(distance*(i+1), distance*i, 0, 0);
+    	                	translate.setDuration(1000);
+    	                	translate.reset();  
+    	                	translate.setFillAfter(true);
+    	                	chip.clearAnimation();
+    	                	chip.startAnimation(translate);
+                		}
+        	    	}
+        	    	if (direcy > 0){
+                			TranslateAnimation translate = new TranslateAnimation(distance*i, distance*i, 0, (height-302));
+    	                	translate.setDuration(1000);
+    	                	translate.reset();  
+    	                	translate.setFillAfter(true);
+    	                	chip.clearAnimation();
+    	                	chip.startAnimation(translate);
         	    	}
 	                break;
         		default:
