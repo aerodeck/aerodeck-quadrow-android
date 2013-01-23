@@ -5,7 +5,6 @@
 # files for the dex VM
 *.dex
 
-
 # generated files
 bin/
 gen/
