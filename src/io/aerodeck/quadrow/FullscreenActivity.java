@@ -193,7 +193,7 @@ public class FullscreenActivity extends Activity {
             		if(i <= 2){
             			i++;
             			TranslateAnimation translate = new TranslateAnimation(distance*(i-1), distance*i, 0, 0);
-	                	translate.setDuration(1000);
+	                	translate.setDuration(500);
 	                	translate.reset();  
 	                	translate.setFillAfter(true);
 	                	chip.clearAnimation();
@@ -208,7 +208,7 @@ public class FullscreenActivity extends Activity {
             		if(i >= -2 ){
             			i--;
             			TranslateAnimation translate = new TranslateAnimation(distance*(i+1), distance*i, 0, 0);
-	                	translate.setDuration(1000);
+	                	translate.setDuration(500);
 	                	translate.reset();  
 	                	translate.setFillAfter(true);
 	                	chip.clearAnimation();
