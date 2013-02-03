@@ -173,10 +173,11 @@ public class FullscreenActivity extends Activity {
         Display display = getWindowManager().getDefaultDisplay(); 
         final int width = display.getWidth();
         final int height = display.getHeight();
-        //final float center = width/2;
-		final float distance = width/7;
+		final float distanceLateral = width/7;
+		final float distanceVertical = (board.getHeight())/6;
+		final double initMarginChip = height * 0.2875;
 		i = 0;
-        
+		
         backButton.setOnClickListener(
     			new View.OnClickListener()
     	        {
@@ -192,7 +193,7 @@ public class FullscreenActivity extends Activity {
             	public void onClick(View view){
             		if(i <= 2){
             			i++;
-            			TranslateAnimation translate = new TranslateAnimation(distance*(i-1), distance*i, 0, 0);
+            			TranslateAnimation translate = new TranslateAnimation(distanceLateral*(i-1), distanceLateral*i, 0, 0);
 	                	translate.setDuration(1000);
 	                	translate.reset();  
 	                	translate.setFillAfter(true);
@@ -207,7 +208,7 @@ public class FullscreenActivity extends Activity {
             	public void onClick(View view){
             		if(i >= -2 ){
             			i--;
-            			TranslateAnimation translate = new TranslateAnimation(distance*(i+1), distance*i, 0, 0);
+            			TranslateAnimation translate = new TranslateAnimation(distanceLateral*(i+1), distanceLateral*i, 0, 0);
 	                	translate.setDuration(1000);
 	                	translate.reset();  
 	                	translate.setFillAfter(true);
@@ -238,7 +239,7 @@ public class FullscreenActivity extends Activity {
         	    	if (direcx > 0){
         	    		if(i <= 2){
                 			i++;
-                			TranslateAnimation translate = new TranslateAnimation(distance*(i-1), distance*i, 0, 0);
+                			TranslateAnimation translate = new TranslateAnimation(distanceLateral*(i-1), distanceLateral*i, 0, 0);
     	                	translate.setDuration(1000);
     	                	translate.reset();  
     	                	translate.setFillAfter(true);
@@ -249,7 +250,7 @@ public class FullscreenActivity extends Activity {
         	    	else if (direcx < 0){
         	    		if(i >= -2 ){
                 			i--;
-                			TranslateAnimation translate = new TranslateAnimation(distance*(i+1), distance*i, 0, 0);
+                			TranslateAnimation translate = new TranslateAnimation(distanceLateral*(i+1), distanceLateral*i, 0, 0);
     	                	translate.setDuration(1000);
     	                	translate.reset();  
     	                	translate.setFillAfter(true);
@@ -258,12 +259,18 @@ public class FullscreenActivity extends Activity {
                 		}
         	    	}
         	    	if (direcy > 0){
-                			TranslateAnimation translate = new TranslateAnimation(distance*i, distance*i, 0, (height-302));
-    	                	translate.setDuration(1000);
-    	                	translate.reset();  
-    	                	translate.setFillAfter(true);
-    	                	chip.clearAnimation();
-    	                	chip.startAnimation(translate);
+        	    		int row = game.getRow(i);
+        	    		
+        	    		//distanceVertical is not initializing... that is the present issue...
+        	    		//I have a solution but I'll fix tomorrow
+        	    		
+        	    		TranslateAnimation translate = new TranslateAnimation(distanceLateral*i, distanceLateral*i, 0,
+        	    				((float) (height - initMarginChip)) - (distanceVertical * row));
+        	    		translate.setDuration(1000);
+        	    		translate.reset();
+        	    		translate.setFillAfter(true);
+        	    		chip.clearAnimation();
+        	    		chip.startAnimation(translate);
         	    	}
 	                break;
         		default:
