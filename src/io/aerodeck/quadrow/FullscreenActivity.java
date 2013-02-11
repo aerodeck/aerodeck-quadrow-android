@@ -193,8 +193,13 @@ public class FullscreenActivity extends Activity {
             	public void onClick(View view){
             		if(i <= 2){
             			i++;
+<<<<<<< HEAD
             			TranslateAnimation translate = new TranslateAnimation(distanceLateral*(i-1), distanceLateral*i, 0, 0);
 	                	translate.setDuration(1000);
+=======
+            			TranslateAnimation translate = new TranslateAnimation(distance*(i-1), distance*i, 0, 0);
+	                	translate.setDuration(500);
+>>>>>>> b8bf4dc39ec0995d1d136e0c23e715daca3188dc
 	                	translate.reset();  
 	                	translate.setFillAfter(true);
 	                	chip.clearAnimation();
@@ -208,8 +213,13 @@ public class FullscreenActivity extends Activity {
             	public void onClick(View view){
             		if(i >= -2 ){
             			i--;
+<<<<<<< HEAD
             			TranslateAnimation translate = new TranslateAnimation(distanceLateral*(i+1), distanceLateral*i, 0, 0);
 	                	translate.setDuration(1000);
+=======
+            			TranslateAnimation translate = new TranslateAnimation(distance*(i+1), distance*i, 0, 0);
+	                	translate.setDuration(500);
+>>>>>>> b8bf4dc39ec0995d1d136e0c23e715daca3188dc
 	                	translate.reset();  
 	                	translate.setFillAfter(true);
 	                	chip.clearAnimation();
